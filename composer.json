@@ -1,0 +1,9 @@
+{
+    "require": {
+        "php-imap/php-imap": "^3.0",
+        "vlucas/phpdotenv": "^3.6",
+        "guzzlehttp/guzzle": "^6.3",
+        "php-mime-mail-parser/php-mime-mail-parser": "^6.0",
+        "entomb/obj_mysql": "dev-master"
+    }
+}
