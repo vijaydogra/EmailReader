@@ -37,7 +37,7 @@ if(!$db){
 }
 
 // Better be safe than sorry
-query("create table if not exists `".getenv('DB_TBL_NAME')."` (
+$db->query("create table if not exists `".getenv('DB_TBL_NAME')."` (
 	`id` int(11) unsigned NOT NULL auto_increment,
 	`FROM_EMAIL` varchar(255) NOT NULL default '',
 	`TO_EMAIL` varchar(255) NOT NULL default '',
