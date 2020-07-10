@@ -1,6 +1,6 @@
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
-require_once(__DIR__ . '/lib.php');
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -30,11 +30,11 @@ $config["charset"] = getenv('DB_CHARSET');
 $config["exit_on_error"] = getenv('DB_EXIT_ON_ERROR');
 $config["allow_logging"] = getenv('DB_ALLOW_LOGGING');
 
-//$db = new OBJ_mysql($config);
+$db = new OBJ_mysql($config);
 
-//if(!$db){
-//	die("Database not reachable");
-//}
+if(!$db){
+	die("Database not reachable");
+}
 
 // Better be safe than sorry
 query("create table if not exists `".getenv('DB_TBL_NAME')."` (
@@ -82,20 +82,20 @@ echo "Ending: $date" . PHP_EOL;
 
 // Helper functions
 function saveDetails($objInsert){
-	// $save = $db->insert(getenv('DB_TBL_NAME'), array(
-	// 	`FROM_EMAIL`  => $objInsert['FROM_EMAIL'],
-	// 	`TO_EMAIL` => $objInsert['TO_EMAIL'],
-	// 	`UID` => $objInsert['UID'],
-	// 	`SENDER_NAME` => $objInsert['SENDER_NAME'],
-	// 	`AMOUNT` => $objInsert['AMOUNT'],
-	// 	`MEMO` => $objInsert['MEMO'],
-	// 	`FULL_BODY` => $objInsert['FULL_BODY'],
-	// 	`EMAIL_MESSAGE_ID` => $objInsert['EMAIL_MESSAGE_ID'],
-	// 	`date` => $objInsert['EMAIL_DATE']
-	// ));
-	// if($save){
-	// 	echo "Saved in database" . PHP_EOL;;
-	// }
+	$save = $db->insert(getenv('DB_TBL_NAME'), array(
+		`FROM_EMAIL`  => $objInsert['FROM_EMAIL'],
+		`TO_EMAIL` => $objInsert['TO_EMAIL'],
+		`UID` => $objInsert['UID'],
+		`SENDER_NAME` => $objInsert['SENDER_NAME'],
+		`AMOUNT` => $objInsert['AMOUNT'],
+		`MEMO` => $objInsert['MEMO'],
+		`FULL_BODY` => $objInsert['FULL_BODY'],
+		`EMAIL_MESSAGE_ID` => $objInsert['EMAIL_MESSAGE_ID'],
+		`date` => $objInsert['EMAIL_DATE']
+	));
+	if($save){
+		echo "Saved in database" . PHP_EOL;;
+	}
 }
 
 function _get($client,$url) {
